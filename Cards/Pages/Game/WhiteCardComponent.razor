@@ -1,0 +1,42 @@
+﻿@using Cards.Game
+
+@if (!IsSelected)
+{
+    <button class="card"
+        @onclick=@OnClickPrivate>
+        @Card.Text
+    </button>
+}
+else
+{
+    <div class="card-size overlay-container">
+        <button class="card overlay-box" style="border: 2px solid blue;"
+            @onclick=@OnClickPrivate>
+            @Card.Text
+        </button>
+        <div class="overlay-box stack-top dot"
+         style="top: 90%; left: 85%;">
+            @SelectionIndex
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter, EditorRequired]
+    public WhiteCard Card { get; set; } = new WhiteCard(-1, "Default Card");
+
+    [Parameter]
+    public Action<WhiteCard>? OnClick { get; set; }
+
+    [Parameter]
+    public bool IsSelected { get; set; } = false;
+
+    [Parameter]
+    public int SelectionIndex { get; set; } = 0;
+
+    private void OnClickPrivate()
+    {
+        OnClick?.Invoke(Card);
+    }
+}

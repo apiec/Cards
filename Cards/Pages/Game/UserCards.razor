@@ -1,0 +1,50 @@
+﻿@using Cards.Game
+<div class="stack-vertical">
+    <div class="stack-horizontal">
+        @foreach (var card in Cards)
+        {
+            var indexInSelected = SelectedCards.IndexOf(card) + 1;
+            <WhiteCardComponent Card=@card
+                            OnClick=@OnAnyButtonClick
+                            IsSelected=@(indexInSelected > 0)
+                            SelectionIndex=@indexInSelected />
+        }
+
+    </div>
+    <button @onclick=@OnConfirmSelectionPrivate>
+        Confirm selection
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public IEnumerable<WhiteCard> Cards { get; set; } = new List<WhiteCard>();
+
+    [Parameter]
+    public Action OnConfirmSelection { get; set; } = default!;
+
+    [Parameter]
+    public int RequiredCards { get; set; }
+
+    private List<WhiteCard> SelectedCards { get; } = new();
+
+    private void OnAnyButtonClick(WhiteCard card)
+    {
+        if (SelectedCards.Contains(card))
+        {
+            SelectedCards.Remove(card);
+            StateHasChanged();
+        }
+        else if (SelectedCards.Count < RequiredCards)
+        {
+            SelectedCards.Add(card);
+            StateHasChanged();
+        }
+    }
+
+    private void OnConfirmSelectionPrivate()
+    {
+        OnConfirmSelection?.Invoke();
+    }
+
+}

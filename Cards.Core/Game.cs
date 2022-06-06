@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cards.Core;
+﻿namespace Cards.Core;
 
 public class Game
 {   
@@ -14,9 +8,10 @@ public class Game
     {
         BlackCards = new Deck<BlackCard>(blackCards);
         WhiteCards = new Deck<WhiteCard>(whiteCards);
-        State = new StartOfGameState(this);
         Players = new PlayersManager();
         GameOptions = gameOptions;
+        
+        State = new StartOfGameState(this);
     }
 
     public GameOptions GameOptions { get; }

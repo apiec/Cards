@@ -26,6 +26,6 @@ public class Game
 
 public readonly struct GameOptions
 {
-    public int HandSize { get; }
-    public int RoundLimit { get; }
+    public int HandSize { get; init; }
+    public int RoundLimit { get; init; }
 }

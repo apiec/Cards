@@ -1,4 +1,4 @@
-﻿using Cards.Core;
+﻿using Cards.Core.Game;
 
 namespace Cards.Server.Services;
 
@@ -6,7 +6,7 @@ public class GameService : IGameService
 {
     private readonly IConfiguration _configuration;
     private readonly ICardRepository _cardRepository;
-
+    
     public GameService(IConfiguration configuration, ICardRepository cardRepository)
     {
         _configuration = configuration;

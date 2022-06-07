@@ -1,4 +1,4 @@
-﻿using Cards.Core;
+﻿using Cards.Core.Game;
 
 namespace Cards.Server.Services
 {

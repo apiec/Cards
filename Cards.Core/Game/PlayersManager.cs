@@ -10,7 +10,7 @@ public class PlayersManager
 
     public Player Create(string name)
     {
-        var newPlayer = new Player(Guid.NewGuid(), name);
+        var newPlayer = new Player(name);
         _players.Add(newPlayer);
         if (_sequenceTail is not null)
         {

@@ -1,2 +1,2 @@
 ﻿namespace Cards.Core.Game;
-public record struct WhiteCard(int Id, string Text);
+public record WhiteCard(int Id, string Text);

@@ -1,5 +1,4 @@
-﻿namespace Cards.Core;
-
+﻿namespace Cards.Core.Game;
 public class Game
 {   
     public Game(IEnumerable<BlackCard> blackCards,

@@ -1,5 +1,4 @@
-﻿namespace Cards.Core;
-
+﻿namespace Cards.Core.Game;
 public class PlayersManager
 {
     readonly List<Player> _players = new();

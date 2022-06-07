@@ -1,47 +1,47 @@
-﻿namespace Cards.Core
+﻿namespace Cards.Core.Game;
+
+internal class Deck<T>
 {
-    internal class Deck<T>
+    Random _rng = new Random();
+    List<T> _deck;
+    private int _deckTop;
+
+    public Deck(IEnumerable<T> values)
     {
-        Random _rng = new Random();
-        List<T> _deck;
-        private int _deckTop;
+        _deck = values.ToList();
+        _deckTop = _deck.Count - 1;
+        Shuffle();
+    }
 
-        public Deck(IEnumerable<T> values)
+    public int CountLeft => _deckTop + 1;
+
+    public T Deal()
+    {
+        try
         {
-            _deck = values.ToList();
-            _deckTop = _deck.Count - 1;
-            Shuffle();
+            return _deck[_deckTop--];
         }
-
-        public int CountLeft => _deckTop + 1;
-
-        public T Deal()
+        catch (ArgumentOutOfRangeException e)
         {
-            try
-            {
-                return _deck[_deckTop--];
-            }
-            catch(ArgumentOutOfRangeException e)
-            {
-                throw new Exception("Deck is empty, reset it to use it again.", e);
-            }
+            throw new Exception("Deck is empty, reset it to use it again.", e);
         }
+    }
 
-        public void Reset()
-        {
-            Shuffle();
-            _deckTop = _deck.Count - 1;
-        }
+    public void Reset()
+    {
+        Shuffle();
+        _deckTop = _deck.Count - 1;
+    }
 
-        private void Shuffle()
+    private void Shuffle()
+    {
+        int n = _deck.Count;
+        while (n > 1)
         {
-            int n = _deck.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = _rng.Next(n + 1);
-                (_deck[k], _deck[n]) = (_deck[n], _deck[k]);
-            }
+            n--;
+            int k = _rng.Next(n + 1);
+            (_deck[k], _deck[n]) = (_deck[n], _deck[k]);
         }
     }
 }
+

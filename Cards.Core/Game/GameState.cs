@@ -1,5 +1,4 @@
-﻿namespace Cards.Core;
-
+﻿namespace Cards.Core.Game;
 public abstract class GameState
 {
     protected readonly Game _game;

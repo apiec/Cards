@@ -1,7 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace Cards.Core;
-
+namespace Cards.Core.Game;
 public class ActiveRound
 {
     public ActiveRound(BlackCard blackCard, Player czar, IEnumerable<Player> activePlayers)

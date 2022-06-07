@@ -1,4 +1,4 @@
-﻿namespace Cards.Core;
+﻿namespace Cards.Core.Game;
 public class Player
 {
     public Player(Guid guid, string name)

@@ -1,11 +1,10 @@
 ﻿using Cards.Core.Game;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 
 namespace Cards.Core.Dto;
-public record GameSnapshot(
+public record GameSnapshotDto(
     BlackCard BlackCard,
-    Player Czar,
-    ImmutableList<Player> Players,
+    string CzarId,
+    ImmutableList<PlayerDto> Players,
     GameStateEnum GameState
 );

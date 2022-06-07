@@ -18,6 +18,7 @@ public class Game
     public GameState State { get; internal set; }
     public int RoundNumber { get; internal set; }
 
+    public IRoundData RoundData => CurrentRound;
     internal ActiveRound CurrentRound { get; set; } = null!;
     internal Deck<BlackCard> BlackCards { get; }
     internal Deck<WhiteCard> WhiteCards { get; }

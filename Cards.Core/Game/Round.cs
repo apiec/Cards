@@ -1,7 +1,15 @@
 ﻿using System.Collections.Immutable;
 
 namespace Cards.Core.Game;
-public class ActiveRound
+
+public interface IRoundData
+{
+    BlackCard BlackCard { get; }
+    Player Czar { get; }
+    Player? Winner { get; }
+}
+
+public class ActiveRound : IRoundData
 {
     public ActiveRound(BlackCard blackCard, Player czar, IEnumerable<Player> activePlayers)
     {

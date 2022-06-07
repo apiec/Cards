@@ -8,9 +8,9 @@ public class PlayersManager
 
     public IReadOnlyList<Player> Players => _players.AsReadOnly();
 
-    public Player Create(string name)
+    public Player Create(string id, string name)
     {
-        var newPlayer = new Player(name);
+        var newPlayer = new Player(id, name);
         _players.Add(newPlayer);
         if (_sequenceTail is not null)
         {

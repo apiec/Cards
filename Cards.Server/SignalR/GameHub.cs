@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 namespace Cards.Server.SignalR;
 public class GameHub : Hub<IGameClient>
 {
-    private readonly IGameService _gameService;
+    private readonly IGameProvider _gameService;
     private readonly IPlayerService _playerService;
 
-    public GameHub(IGameService gameService, IPlayerService playerService)
+    public GameHub(IGameProvider gameService, IPlayerService playerService)
     {
         _gameService = gameService;
         _playerService = playerService;

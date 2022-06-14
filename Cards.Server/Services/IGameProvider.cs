@@ -2,7 +2,7 @@
 
 namespace Cards.Server.Services
 {
-    public interface IGameService
+    public interface IGameProvider
     {
         Game Game { get; }
         void RestartGame();

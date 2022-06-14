@@ -2,12 +2,12 @@
 
 namespace Cards.Server.Services;
 
-public class GameService : IGameService
+public class GameProvider : IGameProvider
 {
     private readonly IConfiguration _configuration;
     private readonly ICardRepository _cardRepository;
     
-    public GameService(IConfiguration configuration, ICardRepository cardRepository)
+    public GameProvider(IConfiguration configuration, ICardRepository cardRepository)
     {
         _configuration = configuration;
         _cardRepository = cardRepository;

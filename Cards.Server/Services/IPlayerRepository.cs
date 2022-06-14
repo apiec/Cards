@@ -4,6 +4,6 @@ namespace Cards.Server.Services
 {
     public interface IPlayerService
     {
-        public IDictionary<string, Player> ConnectionToPlayer { get; }
+        public IDictionary<string, Player> IdToPlayer { get; }
     }
 }

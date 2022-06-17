@@ -1,5 +1,9 @@
 ﻿@page "/game"
+@using Cards.Core.Game
 @using Cards.Game
+@using Cards.Core.Dto
+@using Microsoft.AspNetCore.SignalR.Client
+
 
 <PageTitle>Game</PageTitle>
 
@@ -33,13 +37,25 @@
 
 
 @code {
+    private HubConnection _hubConnection;
 
-    public List<WhiteCard> Cards { get; } = new()
+    protected override Task OnInitializedAsync()
     {
-        new (1, "first card"),
-        new (2, "second card"),
-        new (3, "third card")
-    };
+        _hubConnection = new HubConnectionBuilder()
+            .WithUrl("/game")
+            .Build();
+
+        _hubConnection.On<PlayerSpecificGameSnapshotDto>("UpdateGameState", UpdateGameState);
+
+        return base.OnInitializedAsync();
+    }
+
+    public List<WhiteCard> Cards { get; private set; } = new();
+
+    private void UpdateGameState(PlayerSpecificGameSnapshotDto gameSnapshot)
+    {
+        Cards = gameSnapshot.Hand.ToList();
+    }
 
     private void OnConfirmSelection()
     {

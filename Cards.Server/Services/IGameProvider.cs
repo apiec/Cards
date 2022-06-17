@@ -1,10 +1,8 @@
 ﻿using Cards.Core.Game;
 
-namespace Cards.Server.Services
+namespace Cards.Server.Services;
+public interface IGameProvider
 {
-    public interface IGameProvider
-    {
-        Game Game { get; }
-        void RestartGame();
-    }
+    Game Game { get; }
+    void RestartGame();
 }

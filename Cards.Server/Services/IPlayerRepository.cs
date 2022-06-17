@@ -1,9 +1,7 @@
 ﻿using Cards.Core.Game;
 
-namespace Cards.Server.Services
+namespace Cards.Server.Services;
+public interface IPlayerService
 {
-    public interface IPlayerService
-    {
-        public IDictionary<string, Player> IdToPlayer { get; }
-    }
+    public IDictionary<string, Player> IdToPlayer { get; }
 }

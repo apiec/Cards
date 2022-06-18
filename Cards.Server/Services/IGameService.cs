@@ -7,5 +7,5 @@ public interface IGameService
     Task PickWinner(string winningPlayerId);
     Task RemovePlayer(string connectionId);
     Task StartNewRound();
-    Task SubmitCards(string connectionId, int cardIds);
+    Task SubmitCards(string connectionId, int[] cardIds);
 }

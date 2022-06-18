@@ -62,10 +62,14 @@ public class PlayersPickingState : GameState
     {
     }
 
-    public void SubmitPickedCards(Player player, WhiteCard[] whiteCards)
+    public void SubmitPickedCards(Player player, int[] cardIds)
     {
-        ValidateSubmission(player, whiteCards);
-        
+        ValidateSubmission(player, cardIds);
+
+        var whiteCards = player.WhiteCards
+            .Where(c => cardIds.Contains(c.Id))
+            .ToArray();
+
         _game.CurrentRound.PickedCards.Add(player, whiteCards);
         foreach(var card in whiteCards)
         {
@@ -78,7 +82,7 @@ public class PlayersPickingState : GameState
         }
     }
 
-    private void ValidateSubmission(Player player, WhiteCard[] whiteCards)
+    private void ValidateSubmission(Player player, int[] cardIds)
     {
         if (_game.CurrentRound.PickedCards.ContainsKey(player))
         {
@@ -91,18 +95,17 @@ public class PlayersPickingState : GameState
         }
 
         var blankCount = _game.CurrentRound.BlackCard.BlankCount;
-        if (blankCount != whiteCards.Length)
+        if (blankCount != cardIds.Length)
         {
             throw new Exception($"Wrong amount of submitted cards! " +
-                $"Received {whiteCards.Length} but need {blankCount}");
+                $"Received {cardIds.Length} but need {blankCount}");
         }
 
-        foreach(var card in whiteCards)
+        var cardsNotOwned = cardIds.Where(id => !player.WhiteCards.Any(c => c.Id == id));
+        if (cardsNotOwned.Any())
         {
-            if (!player.WhiteCards.Contains(card))
-            {
-                throw new Exception($"Player: {player} does not own card: {card}");
-            }
+            throw new Exception($"Player: {player} does not own cards " +
+                $"with ids: {string.Join(", ", cardsNotOwned)}");
         }
     }
 

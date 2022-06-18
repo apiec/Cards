@@ -8,6 +8,7 @@ builder.Services
     .AddSingleton<IGameService, GameService>()
     .AddSingleton<ICardRepository, CardRepository>()
     .AddSingleton<IPlayerService, PlayerService>();
+
 builder.Services.AddSignalR();
 
 var app = builder.Build();

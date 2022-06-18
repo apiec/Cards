@@ -46,12 +46,12 @@ public class GameService : IGameService
         return UpdateGameStateForEveryone();
     }
 
-    public Task SubmitCards(string connectionId, WhiteCard[] cards)
+    public Task SubmitCards(string connectionId, int[] cardIds)
     {
         if (_gameProvider.Game.State is PlayersPickingState state)
         {
             var player = _playerService.IdToPlayer[connectionId];
-            state.SubmitPickedCards(player, cards);
+            state.SubmitPickedCards(player, cardIds);
         }
         return UpdateGameStateForEveryone();
     }

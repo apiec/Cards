@@ -1,8 +1,6 @@
-﻿using Cards.Core.Dto;
-using Cards.Core.Game;
+﻿using Cards.Core.Game;
 using Cards.Server.Services;
 using Microsoft.AspNetCore.SignalR;
-using System.Collections.Immutable;
 
 namespace Cards.Server.SignalR;
 public class GameHub : Hub<IGameClient>
@@ -33,9 +31,9 @@ public class GameHub : Hub<IGameClient>
         return _gameService.StartNewRound();
     }
 
-    public Task SubmitCards(WhiteCard[] cards)
+    public Task SubmitCards(int[] cardIds)
     {
-        return _gameService.SubmitCards(Context.ConnectionId, cards);
+        return _gameService.SubmitCards(Context.ConnectionId, cardIds);
     }
 
     public Task PickWinner(string winningPlayerId)
